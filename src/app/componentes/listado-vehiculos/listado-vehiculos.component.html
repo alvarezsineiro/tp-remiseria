@@ -1,0 +1,42 @@
+<div class="jumbotron" style="padding:25px;background-color: #1BA045;border-radius: 10px;margin: 5%;">
+<h2>Lista de Vehiculos: </h2>
+<hr>
+<table class='table table-hover table-responsive table-fixed' style="background-color: rgb(224, 215, 84);text-align: center">
+  <thead>
+    <tr style="font-size: 25px;font-family: Georgia, 'Times New Roman', serif;">
+      <th>Modelo</th>
+      <th>Marca</th>
+      <th>Patente</th>
+      <th>Estado</th>
+      <th>Foto</th>
+    </tr>
+  </thead>
+  <tbody *ngFor="let vehiculo of listaVehiculo" >
+    <tr [appColorVehiculo]=vehiculo.estado style="font-size: 25px;font-family: Georgia, 'Times New Roman', serif;">
+      <td>{{vehiculo.modelo}} </td> 
+      <td>{{vehiculo.marca}} </td>
+      <td>{{vehiculo.patente}}</td>
+      <td>{{vehiculo.estado | estadoVehiculo}}</td>
+      <td><img  style="width:100px;height:100px;border-radius: 10px;" class='fotoGrilla'  src="../../../assets/vehiculos/{{vehiculo.foto}}" /></td>
+      <td *ngIf="vehiculo.estado == 1"><button class="btn btn-danger" (click)="Desabilitar(vehiculo.id)" style="width: 100%">Desabilitar</button></td>
+      <td *ngIf="vehiculo.estado == 2"><button class="btn btn-success" (click)="Habilitar(vehiculo.id)" style="width: 100%">Habilitar</button></td>
+    </tr>
+    <!--<tr *ngIf="vehiculo.estado == 1" style="background-color: green">
+      <td>{{vehiculo.modelo}} </td> 
+      <td>{{vehiculo.marca}} </td>
+      <td>{{vehiculo.patente}}</td>
+      <td>Disponible</td>
+      <td><img  style="width:100px;height:100px" class='fotoGrilla'  src="../../../assets/vehiculos/{{vehiculo.foto}}" /></td>
+      <td><button class="btn btn-danger" (click)="Desabilitar(vehiculo.id)" style="width: 100%">Desabilitar</button></td>
+    </tr> 
+    <tr *ngIf="vehiculo.estado == 2" style="background-color: orangered">
+      <td>{{vehiculo.modelo}} </td> 
+      <td>{{vehiculo.marca}} </td>
+      <td>{{vehiculo.patente}}</td>
+      <td>No disponible</td>
+      <td><img  style="width:100px;height:100px" class='fotoGrilla'  src="../../../assets/vehiculos/{{vehiculo.foto}}" /></td>
+      <td><button class="btn btn-success" (click)="Habilitar(vehiculo.id)" style="width: 100%">Habilitar</button></td>
+    </tr> -->
+ </tbody>
+</table>
+</div>

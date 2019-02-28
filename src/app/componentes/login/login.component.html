@@ -1,0 +1,73 @@
+ <div class="container" >
+  
+  <div class="jumbotron"  style="padding:25px;background-color: #1BA045;border-radius: 10px;margin: 10%;">
+    <form action="return true;" style="background: rgb(224, 215, 84); border-radius: 10px;border-color: white">
+      <div style="text-align: left" >
+        <h2 style="font-family: Verdana, Geneva, Tahoma, sans-serif;color: black">Inicie sesión</h2>
+      </div>
+      <hr style="border-color: white">
+      
+     
+      <div class="container" >
+        
+
+        <div class="form-group" style="margin-left: 33%">
+          <div class="row">
+            <div class="col">
+              <label style="color: black"><b>Usuario: </b></label>
+            </div>
+            <div class="col">
+ <input type="text" placeholder="Usuario"  [(ngModel)]="usuario"  name="uname" required class="form-control" style="width: 50%;">
+            </div>
+          </div>
+            
+           
+          </div>
+          <div class="form-group" style="margin-left: 33%">
+              <div class="row">
+                  <div class="col">
+                    <label style="color: black"><b>Clave: </b></label>
+                  </div>
+                  <div class="col">
+       <input type="password" placeholder="Clave"  [(ngModel)]="clave" name="psw" required class="form-control" style="width: 50%;">
+                  </div>
+                </div>
+            
+            
+          </div>
+
+        
+            
+        <div style="text-align: center">
+          <button class="loginbtn"  (click)="Entrar()" style="width: 25%;border-radius: 10px;">Entrar</button>
+         
+        </div>
+      </div>
+
+      <div class="container" style="text-align: center" >
+        <a routerLink="/Registro" href="">No tiene usuario?</a>
+      </div>
+
+      <div class="alert alert-danger" role="alert"*ngIf="mensaje != ''">
+          {{mensaje}}
+        </div>
+      
+      
+      <div style="margin-left: 40%" >
+      <select id="mySelect" #t (change)="Cargar(t.value)" class="form-control" style="width: 33%;background-color: blanchedalmond;">
+          <option value="1">Encargado
+          <option value="2">Cliente
+          <option value="3">Remisero
+        </select>
+      </div>
+<div class="spinner-grow" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+    </form>
+    
+  </div>
+</div>
+
+<div *ngIf="gif"> 
+<app-preload-imagen ></app-preload-imagen>
+</div>

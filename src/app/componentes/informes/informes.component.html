@@ -1,0 +1,71 @@
+<app-menu></app-menu>
+
+<div class="container" style="padding:25px;background-color: #1BA045;border-radius: 10px;margin: 10%;">
+  <h2>Informes: </h2>
+  <hr>
+  <div class="row">
+    <div class="col-lg-2 col-md-3 col-sm-3 col-xs-8">
+      <label class="form-control">Ingrese Mes:</label>
+    </div>
+    <div class="col-lg-10 col-md-9 col-sm-9 col-xs-4">
+      <input type="number" [(ngModel)]="mes" min="1" max="12" class="form-control">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-2 col-md-3 col-sm-3 col-xs-8">
+      <label class="form-control">Ingrese Año: </label>
+    </div>
+    <div class="col-lg-10 col-md-9 col-sm-9 col-xs-4">
+      <input type="number" [(ngModel)]="anio" min="2017" max="2019" class="form-control">
+    </div>
+  </div>
+  <div style="text-align: center">
+    <button class="btn btn-warning" (click)="buscar()" [disabled]="(mes > 12 || mes < 1) || (anio > 2019 || anio < 2017)" style="width: 50%">Buscar Viajes</button>
+  </div>
+</div>
+<div *ngIf="mostrar" style="padding:25px;background-color: #1BA045;border-radius: 10px;margin: 10%;">
+  <h2>Lista de Viajes: </h2>
+  <hr>
+  <table class='table table-hover table-responsive table-fixed'>
+    <thead>
+      <tr>
+        <th>Cliente</th>
+        <th>Horario</th>
+        <th>Precio</th>
+        <th>Medio de pago</th>
+        <th>Distancia</th>
+        <th>Duracion</th>
+        <th>Cantidad de Pasajeros</th>
+        <!--th>Estado</th-->
+        <th>Mensaje</th>
+        <th>Remisero</th>
+        <th>Vehiculo</th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let dato of listaDeDatos">
+      <tr>
+        <td>{{dato.Cliente}} </td>
+        <td>{{dato.Horario}} </td>
+        <td>{{dato.Precio}}</td>
+        <td>{{dato.MedioPago}}</td>
+        <td>{{dato.Distancia}}</td>
+        <td>{{dato.Duracion}}</td>
+        <td>{{dato.Pasajeros}}</td>
+        <!--td>{{dato.Estado | estado}}</td-->
+        <td>{{dato.Mensaje}}</td>
+        <td>{{dato.Remisero}}</td>
+        <td>{{dato.Vehiculo}}</td>
+      </tr>
+    </tbody>
+  </table>
+  <div style="text-align: center">
+    <button class="btn btn-warning" (click)="ExportarCSV()" style="width: 25%">Exportar Excel</button>
+    <button class="btn btn-info" (click)="ExportarPDF()" style="width: 25%">Exportar PDF</button>
+  </div>
+</div>
+
+
+
+<div *ngIf="gif">
+  <app-preload-imagen></app-preload-imagen>
+</div>

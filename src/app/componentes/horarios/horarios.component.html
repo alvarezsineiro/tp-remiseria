@@ -1,0 +1,97 @@
+<app-menu></app-menu>
+<div class="container" style="padding:25px;background-color: #1BA045;border-radius: 10px;margin-left: 15%;margin-top: 5%">
+  <h1>Gestor de Horarios: </h1>
+  <hr>
+  <div class="row">
+   <div class="col-md-5" style="text-align: right">
+      <label class="label2">Legajo de remisero:</label>
+    </div>
+    <div class="col-md-7">
+      <div class="input-group">
+        <div class="input-group-addon">
+          <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+        </div>
+        <input type="number" [(ngModel)]="legajo" class="form-control" style="width: 50%">
+      </div>
+    </div>
+      
+      
+  </div>
+  <br>
+  <div style="text-align: center">
+      <button class="btn btn-warning" (click)="buscar()" style="width:30%">Buscar Remisero</button>
+      </div>
+</div>
+
+
+
+<div class="container" >
+  <div class="formulario" *ngIf="formulario" style="padding:25px;background-color: #1BA045;border-radius: 10px;margin: 5%;">
+    <h2>Datos del horario</h2>
+    <hr>
+    <div class="row">
+      <div class="col-lg-2 col-md-3 col-sm-0 col-xs-0">
+      </div>
+      <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+        <label >Horario de comienzo:</label>
+      </div>
+      <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+        <input type='time' [(ngModel)]="horario.timeDesde" class="form-control" />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-2 col-md-3 col-sm-0 col-xs-0">
+      </div>
+      <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+        <label >Horario de fin:</label>
+      </div>
+      <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+        <input type='time' [(ngModel)]="horario.timeHasta" class="form-control" />
+      </div>
+      <br>
+      <div *ngIf="formularioVehiculo">
+        <h2>Vehiculo elegido: {{patenteVehiculo}}</h2>
+        <hr>
+        <h2>Lista de Vehiculos: </h2>
+        <table class='table table-hover table-responsive table-fixed' style="background: rgb(224, 215, 84);">
+          <thead>
+            <tr>
+              <th>Modelo</th>
+              <th>Marca</th>
+              <th>Patente</th>
+              <th>Estado</th>
+              <th>Foto</th>
+            </tr>
+          </thead>
+          <tbody *ngFor="let vehiculo of listaVehiculo">
+            <tr *ngIf="vehiculo.estado == 1" style="background-color: green">
+              <td>{{vehiculo.modelo}} </td>
+              <td>{{vehiculo.marca}} </td>
+              <td>{{vehiculo.patente}}</td>
+              <td>Disponible</td>
+              <td><img style="width:100px;height:100px;border-radius: 10px" class='fotoGrilla' src="../../../assets/vehiculos/{{vehiculo.foto}}"
+                /></td>
+              <td><button class="btn btn-danger" (click)="elegir(vehiculo.id,vehiculo.patente)" style="width: 100%">Elegir</button></td>
+            </tr>
+            <tr *ngIf="vehiculo.estado == 2" style="background-color: orangered">
+              <td>{{vehiculo.modelo}} </td>
+              <td>{{vehiculo.marca}} </td>
+              <td>{{vehiculo.patente}}</td>
+              <td>No disponible</td>
+              <td><img style="width:100px;height:100px;border-radius: 10px" class='fotoGrilla' src="../../../assets/vehiculos/{{vehiculo.foto}}"
+                /></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <br>
+    <div style="text-align: center">
+    <button class="btn btn-warning" (click)="guardarHorario()" [disabled]="idVehiculo == 0 || idVehiculo == null " style="width: 50%">Cambiar Horario</button>
+  </div>
+</div>
+</div>
+
+<div *ngIf="gif"> 
+<app-preload-imagen ></app-preload-imagen>
+</div>

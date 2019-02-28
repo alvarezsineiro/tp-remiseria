@@ -1,0 +1,82 @@
+<app-menu></app-menu>
+<div class="container">
+  <div class="jumbotron" style="padding:25px;background-color: #1BA045;border-radius: 10px;margin: 10%;">
+    <div class="container" style="background: rgb(224, 215, 84); border-radius: 10px;border-color: white">
+      <div style="text-align: left">
+        <h2>Encuesta de servicio</h2>
+      </div>
+      <hr>
+      
+      <div>
+        <h4>1) ¿Disfruto el servicio prestado?</h4>
+        <div class="radio">
+          <label class="radio-inline" style="color: black"><input  type="radio"  value="Si" [(ngModel)]="miEncuesta.pregunta1" name="optgusto">Si</label>
+          <label class="radio-inline" style="color: black"><input  type="radio"  value="No" [(ngModel)]="miEncuesta.pregunta1" name="optgusto">No</label>
+        </div>
+        <hr>
+        <h4>2) ¿El conductor se comporto de manera correcta?</h4>
+        <div class="radio">
+          <label class="radio-inline" style="color: black"><input  type="radio"  value="Si" [(ngModel)]="miEncuesta.pregunta2" name="optremisero">Si</label>
+          <label class="radio-inline" style="color: black"><input  type="radio"  value="No" [(ngModel)]="miEncuesta.pregunta2" name="optremisero">No</label>
+          <label class="radio-inline" style="color: black"><input  type="radio"  value="MasoMenos" [(ngModel)]="miEncuesta.pregunta2" name="optremisero">Maso menos</label>
+        </div>
+        <hr>
+        <h4>3) ¿El vehiculo solicitado llego a tiempo?</h4>
+        <div class="radio">
+          <label class="radio-inline" style="color: black"><input  type="radio"  value="Si" [(ngModel)]="miEncuesta.pregunta3" name="opthorario">Si</label>
+          <label class="radio-inline" style="color: black"><input  type="radio"  value="No" [(ngModel)]="miEncuesta.pregunta3" name="opthorario">No</label>
+          <label class="radio-inline" style="color: black"><input  type="radio"  value="SiMenos" [(ngModel)]="miEncuesta.pregunta3" name="opthorario">Menos de 15 minutos tarde</label>
+          <label class="radio-inline" style="color: black"><input  type="radio"  value="SiMas" [(ngModel)]="miEncuesta.pregunta3" name="opthorario">Más de 15 minutos tarde</label>
+        </div>
+        <hr>
+        <h4>4) ¿Alguna queja del vehiculo en el que viajo?</h4>
+        <div class="radio">
+          <label class="radio-inline" style="color: black"><input (change)="cambiarQueja()" [(ngModel)]="respuesta41" type="checkbox">Fue incomodo</label>
+          <label class="radio-inline" style="color: black"><input (change)="cambiarQueja()" [(ngModel)]="respuesta42" type="checkbox">No se sintio seguro</label>
+          <label class="radio-inline" style="color: black"><input (change)="cambiarQueja()" [(ngModel)]="respuesta43" type="checkbox">Se paro durante el viaje</label>
+        </div>
+        <hr>
+        <h4>5) ¿Que opina de nuestra pagina web?</h4>
+        <div class="radio">
+          <label class="radio-inline" style="color: black"><input (change)="cambiarWeb()" [(ngModel)]="respuesta51" type="checkbox">Buen estilo</label>
+          <label class="radio-inline" style="color: black"><input (change)="cambiarWeb()" [(ngModel)]="respuesta52" type="checkbox">Buena funcionalidad</label>
+        </div>
+        <hr>
+        <h4>6) ¿Recomendaria nuestro servio a algún conocido?</h4>
+        <div class="radio">
+          <select [(ngModel)]="miEncuesta.pregunta6" class="form-control" >
+                <option value="Si">Si a todos mis amigos</option>
+                <option value="So">Solo a conocidos</option>
+                <option value="No">No</option>
+          </select>
+        </div>
+        <hr>
+        <h4>7) ¿Como calificaría el servicio prestado?</h4>
+        <select [(ngModel)]="miEncuesta.pregunta7" class="form-control" id="select">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+          </select>
+          <hr>
+        <h4>8) Alguna sugerencia:</h4>
+        <input type="text" [(ngModel)]="miEncuesta.pregunta8" class="form-control" placeholder="Ingrese su opinion">
+      </div>
+      <br>
+      <div style="text-align: center">
+        <button class="btn btn-success" (click)="enviar()">Aceptar</button>
+      </div>
+      <br>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="gif"> 
+<app-preload-imagen ></app-preload-imagen>
+</div>

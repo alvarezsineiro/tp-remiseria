@@ -1,0 +1,133 @@
+<app-menu></app-menu>
+<div class="container">
+
+  <div class="jumbotron" style="padding:25px;background-color: #1BA045;border-radius: 10px;margin: 10%;">
+    <div class="container "style="background: rgb(224, 215, 84); border-radius: 10px;border-color: white">
+    <h2 style="font-size:50px;text-align: left;color: black;font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">Remiseria Huberto</h2>
+    <hr>
+    <p style="font-size:25px;text-align: center;color: black;font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">Bienvenido señor/a: {{usuario}}</p>
+    <div style="text-align: center">
+            <img src="{{foto}}" style="height: 150px;width: 150px;border-radius: 50%;">
+    </div>
+  
+  <br>
+  <!--Encargado-->
+  <div *ngIf="TIPO==1">
+  <ul class="list-group bordesolido">
+    <li class="list-group-item list-group-item-info transparent-style">
+      <a routerLink="/Remiseros">
+        <div class="media">
+          
+          <div class="media-body">
+            <h3 style="color: #222;" class="media-heading">Lista de Empleados</h3>
+          </div>
+      </div>
+      </a>
+    </li>
+    <li class="list-group-item list-group-item-info transparent-style">
+      <a routerLink="/Vehiculos">
+        <div class="media">
+          <div class="media-body">
+            <h3 style="color: #222;" class="media-heading">Listados de Vehiculos</h3>
+          </div>
+        </div>
+      </a>
+    </li>
+    <li class="list-group-item list-group-item-info transparent-style">
+      <a routerLink="/Horario">
+        <div class="media">
+          <div class="media-body">
+            <h3 style="color: #222;" class="media-heading">Gestor de Horario</h3>
+          </div>
+        </div>
+      </a>
+    </li>
+    <li class="list-group-item list-group-item-info transparent-style">
+      <a routerLink="/gestorViajes">
+        <div class="media">
+          <div class="media-body">
+            <h3 style="color: #222;" class="media-heading">Lista de viajes</h3>
+          </div>
+        </div>
+      </a>
+    </li>
+    <li class="list-group-item list-group-item-info transparent-style">
+      <a routerLink="/Informes">
+        <div class="media">
+          <div class="media-body">
+            <h3 style="color: #222;" class="media-heading">Informes</h3>
+          </div>
+        </div>
+      </a>
+    </li>
+    <li class="list-group-item list-group-item-info transparent-style">
+      <a routerLink="/Graficos">
+        <div class="media">
+          <div class="media-body">
+            <h3 style="color: #222;" class="media-heading">Estadisticas</h3>
+          </div>
+        </div>
+      </a>
+    </li>
+  </ul>
+  </div>
+
+  <!--Remisero-->
+  <div *ngIf="TIPO==3">
+  <ul class="list-group bordesolido">
+    <li class="list-group-item list-group-item-info transparent-style">
+      <a routerLink="/gestorViajes">
+        <div class="media">
+          <div class="media-body">
+            <h3 style="color: #222;" class="media-heading">Lista de viajes</h3>
+          </div>
+        </div>
+      </a>
+    </li>
+    <li class="list-group-item list-group-item-info transparent-style">
+      <a routerLink="/Graficos">
+        <div class="media">
+          <div class="media-body">
+            <h3 style="color: #222;" class="media-heading">Estadisticas</h3>
+          </div>
+        </div>
+      </a>
+    </li>
+  </ul>
+  </div>
+
+  <!--Cliente-->
+  <div *ngIf="TIPO==2">
+  <ul class="list-group bordesolido">
+    <li class="list-group-item list-group-item-info transparent-style">
+      <a routerLink="/Viaje">
+        <div class="media">
+          <div class="media-body">
+            <h3 style="color: #222;" class="media-heading">Solicitar Viaje</h3>
+          </div>
+      </div>
+      </a>
+    </li>
+    <li class="list-group-item list-group-item-info transparent-style">
+      <a routerLink="/listaViajes">
+        <div class="media">
+          <div class="media-body">
+            <h3 style="color: #222;" class="media-heading">Lista de viajes</h3>
+          </div>
+        </div>
+      </a>
+    </li>
+    <li class="list-group-item list-group-item-info transparent-style">
+      <a routerLink="/Encuesta">
+        <div class="media">
+          <div class="media-body">
+            <h3 style="color: #222;" class="media-heading">Encuesta</h3>
+          </div>
+        </div>
+      </a>
+    </li>
+  </ul>
+</div>
+  </div>
+</div>
+</div>

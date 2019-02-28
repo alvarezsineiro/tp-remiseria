@@ -1,0 +1,67 @@
+<nav *ngIf="TIPO=='1'" class="navbar navbar-inverse" style="background-color: rgb(35, 23, 197)">
+      <div class="container-fluid">
+        <div class="navbar-header" >
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+            <span class="icon-bar"></span>
+                                  
+          </button>
+          <a class="navbar-brand" routerLink="/Principal">Inicio</a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
+                <li><a  (click)="IR('Remiseros')">Lista de Empleados</a></li>
+                <li><a  (click)="IR('Vehiculos')">Listados de Vehiculos</a></li>
+                <li><a  (click)="IR('Horario')">Gestor de Horario</a></li>
+                <li><a  (click)="IR('gestorViajes')">Lista de viajes</a></li>
+                <li><a  (click)="IR('Informes')">Informes</a></li>
+                <li><a  (click)="IR('Graficos')">Estadisticas</a></li>
+              </ul>
+              <ul class="nav navbar-nav navbar-right">
+                  <li><a routerLink="/Login"><span class="glyphicon glyphicon-log-out"></span> Salir</a></li>
+                </ul>
+        </div>
+      </div>
+  </nav>
+
+  <nav *ngIf="TIPO=='2'" class="navbar navbar-inverse" style="background-color: rgb(35, 23, 197)">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+            <span class="icon-bar"></span>
+                                  
+          </button>
+          <a class="navbar-brand" routerLink="/Principal">Inicio</a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
+                <li><a  (click)="IR('Viaje')">Solicitar Viaje</a></li>
+                <li><a  (click)="IR('listaViajes')">Lista de viajes</a></li>
+                <li><a  (click)="IR('Encuesta')">Encuesta</a></li>
+              </ul>
+              <ul class="nav navbar-nav navbar-right">
+                  <li><a routerLink="/Login"><span class="glyphicon glyphicon-log-out"></span> Salir</a></li>
+                </ul>
+        </div>
+      </div>
+  </nav>
+
+    <nav *ngIf="TIPO=='3'" class="navbar navbar-inverse" style="background-color: rgb(35, 23, 197)">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+            <span class="icon-bar"></span>
+                                  
+          </button>
+          <a class="navbar-brand" routerLink="/Principal">Inicio</a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
+                <li><a  (click)="IR('gestorViajes')">Lista de viajes</a></li>
+                <li><a  (click)="IR('Graficos')">Estadisticas</a></li>
+              </ul>
+              <ul class="nav navbar-nav navbar-right">
+                  <li><a routerLink="/Login"><span class="glyphicon glyphicon-log-out"></span> Salir</a></li>
+                </ul>
+        </div>
+      </div>
+  </nav>

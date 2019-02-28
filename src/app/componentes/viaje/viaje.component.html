@@ -1,0 +1,119 @@
+<app-menu></app-menu>
+<br>
+<br>
+<div class="container" style="padding:25px;background-color: #1BA045;border-radius: 10px;margin-left: 10%;margin-top: 5% ">
+ <h3>Origen:</h3> 
+ <div class="row">
+    
+    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-10">
+        <label>Localidad:</label><input type="text" class="form-control" [(ngModel)]="localidadDesde" placeholder="Ingrese localidad">
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+        <label>Calle:</label><input type="text" class="form-control" [(ngModel)]="calleDesde" placeholder="Ingrese dirección">
+    </div>
+    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+        <label>Altura:</label><input type="text" class="form-control" [(ngModel)]="numeroDesde" placeholder="Ingrese N°">
+    </div>
+  </div>
+  <hr>
+  <h3>Destino:</h3>
+  <div class="row">
+    
+    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-10">
+        <label>Localidad:</label><input type="text" class="form-control" [(ngModel)]="localidadHasta" placeholder="Ingrese localidad">
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-9">
+        <label>Calle:</label><input type="text" class="form-control" [(ngModel)]="calleHasta" placeholder="Ingrese dirección">
+    </div>
+    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-3">
+        <label>Altura:</label><input type="text" class="form-control" [(ngModel)]="numeroHasta" placeholder="Ingrese N°">
+    </div>
+  </div>
+</div>
+<br>
+<div style="text-align: center">
+  <button type="button" class="btn btn-warning" (click)="Trazar()">Trazar Ruta</button>
+</div>
+
+
+<br>
+<!--<div>-->
+<div *ngIf="ruta" style="padding:25px;background-color: #1BA045;border-radius: 10px;margin: 5% ">
+  <agm-map>
+    <agm-direction *ngIf="dir" [origin]="dir.origin" [destination]="dir.destination"></agm-direction>
+  </agm-map>
+  <br><br>
+  <div class="container" style="background: rgb(224, 215, 84); border-radius: 10px;border-color: white">
+    <div class="row">
+      <div class="col-lg-2 col-md-2 col-sm-2 col-xs-5">
+        <label>Fecha de viaje: </label>
+      </div>
+      <div class="col-lg-10 col-md-10 col-sm-10 col-xs-7">
+        <input class="form-control" type="datetime-local" [(ngModel)]="horario">
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-lg-1 col-md-2 col-sm-2 col-xs-3">
+        <label>Pasajeros: </label>
+      </div>
+      <div class="col-lg-1 col-md-1 col-sm-2 col-xs-9">
+        <input type="number" class="form-control" [(ngModel)]="cant" min="1" placeholder="Ingrese N° de pasajeros">
+      </div>
+      <div class="col-lg-3 col-md-3 col-sm-8 col-xs-12">
+        <label class="form-control">Duración {{duracion}} minutos</label>
+      </div>
+      <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+        <label class="form-control">Distancia {{distancia}} metros</label>
+      </div>
+      <div class="col-lg-4 col-md-3 col-sm-6 col-xs-12">
+        <label class="form-control">Precio {{distancia | exponentialStrength: 2}} pesos</label>
+      </div>
+      <!--<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+        <label class="form-control">Precio {{precio}} pesos</label>
+      </div>-->
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-lg-1 col-md-2 col-sm-3 col-xs-6">
+        <label>Medio de pago: </label>
+      </div>
+      <div class="col-lg-3 col-md-2 col-sm-3 col-xs-6">
+        <select [(ngModel)]="medioDePago" class="form-control" id="select">
+            <option value="efectivo">Efectivo</option>
+            <option value="debito">Débito</option>
+        </select>
+      </div>
+      <div class="col-lg-8 col-md-8 col-sm-6 col-xs-12">
+        <input type="string" class="form-control" [(ngModel)]="comodidad" placeholder="Ingrese sugerencia para su viaje">
+      </div>
+    </div>
+    <br>
+    <!--div *ngIf="!captchConfirm" style="text-align: center">
+      <div style="text-align: center">
+        <img style="width: 150px;height: 150px" src="../../../assets/captcha/{{captcha.img}}"><br>
+        <div class="row">
+          <div class="col-lg-5 col-md-4 col-sm-4 col-xs-3"></div>
+          <div class="col-lg-2 col-md-4 col-sm-4 col-xs-6">
+            <input type="string" class="form-control" [(ngModel)]="captch" placeholder="No soy un bot">
+          </div>
+          <br>
+        </div>
+      </div>
+      <button type="button" class="btn btn-info" (click)="confirmarCaptcha()">Confirmar</button>
+    </div-->
+    <div style="text-align: center">
+    <div class="captcha">
+        <re-captcha (resolved)="resolvedCaptcha($event)" siteKey="6LfpD18UAAAAAF5G961BFO14n0GnyW1GkubRzcU9"></re-captcha>
+      </div>
+    </div>
+    <br>
+    <div *ngIf="resolved" style="text-align: center">
+      <button type="button" class="btn btn-success"  [disabled]="horario == null || horario ==''" (click)="Crearviaje()">Aceptar</button>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="gif">
+  <app-preload-imagen></app-preload-imagen>
+</div>

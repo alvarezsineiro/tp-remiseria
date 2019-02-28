@@ -1,0 +1,100 @@
+<app-menu></app-menu>
+
+<app-listado-vehiculos (cambio)="Actualizar($event)" [listaVehiculo]="listadoParaCompartir"></app-listado-vehiculos>
+
+<div style="text-align: center">
+  <button *ngIf="!isvalid" class="btn btn-warning" (click)="agregar()" style="width: 50%">Agregar Vehiculo</button>
+</div>
+
+
+
+
+<div *ngIf="isvalid">
+  <div class="jumbotron" style="padding:25px;background-color: #1BA045;border-radius: 10px;margin: 10%;">
+  <form [formGroup]="registroForm" (ngSubmit)="Registrar()" style="background: rgb(224, 215, 84); border-radius: 10px;border-color: white">
+    <div class="form-group">
+      <h2 style="text-align: left">Datos del Vehiculo</h2>
+      <hr>
+      <div class="form-group">
+
+        <div class="row">
+<div class="col-md-6">
+
+    <label class="label2">Marca:</label>
+    <div class="input-group">
+      <div class="input-group-addon">
+        <span class="glyphicon glyphicon-barcode" aria-hidden="true"></span>
+      </div>
+      <input type="text" class="form-control" [formControl]="marca" [(ngModel)]="miVehiculo.marca" placeholder="Marca del vehiculo">
+    </div>
+    <h6 class="labelO">* 4 caracteres mínimo</h6>
+    <br>
+
+    <label class="label2">Modelo:</label>
+    <div class="input-group">
+      <div class="input-group-addon">
+        <span class="glyphicon glyphicon-barcode" aria-hidden="true"></span>
+      </div>
+      <input type="text" class="form-control" [formControl]="modelo" [(ngModel)]="miVehiculo.modelo"placeholder="Modelo del vehiculo">
+    </div>
+    <h6 class="labelO">* 5 caracteres mínimo</h6>
+    <br>
+
+<label class="label2">Patente:</label>
+<div class="input-group">
+  <div class="input-group-addon">
+    <span class="glyphicon glyphicon-barcode" aria-hidden="true"></span>
+  </div>
+  <input type="text" class="form-control" [formControl]="patente" [(ngModel)]="miVehiculo.patente" placeholder="Patente del vehiculo">
+</div>
+<h6 class="labelO">* 5 caracteres mínimo</h6>
+<br>
+
+</div>
+<div class="col-md-6">
+    <br>
+    <br>
+ <div class="center" style="border-color: cornflowerblue;border-radius: 32px;border: solid; border-color: cornflowerblue">
+          <file-drop (onFileDrop)="dropped($event)" (onFileOver)="fileOver($event)" (onFileLeave)="fileLeave($event)">
+            <span *ngIf="!gif" >Arrastre aquí la foto de su vehiculo: {{nombreFoto1}}</span>
+                  <div *ngIf="gif" style="text-align: center"> 
+                  <img style="height: 60px;width: 60px;" src="../../../assets/fotos/loading.gif">
+                  </div>
+          </file-drop>
+</div>
+        </div>
+        
+        <br>
+
+        </div>
+  
+        <div style="text-align: center">
+
+            <label class="labelO">* Campos obligatorios</label>
+          </div>
+
+
+        <br>
+        <div class="captcha">
+          <re-captcha (resolved)="resolvedCaptcha($event)" siteKey="6LfpD18UAAAAAF5G961BFO14n0GnyW1GkubRzcU9"></re-captcha>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-lg-0 col-md-0 col-sm-0 col-xs-0">
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+            <button type="submit" id="botonRegistro" class="btn btn-success" style="width: 100%" [disabled]="!(registroForm.valid && resolved)">Registrar</button>
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+            <button class="btn btn-danger" style="width: 100%" (click)="cancelar()">Cancelar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+
+</div>
+<div *ngIf="gif2"> 
+<app-preload-imagen ></app-preload-imagen>
+</div>

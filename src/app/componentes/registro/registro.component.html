@@ -1,0 +1,372 @@
+<div class="container">
+  <div class="jumbotron" style="padding:25px;background-color: #1BA045;border-radius: 10px;margin: 10%;">
+
+
+
+    <div class="radio" style="text-align: center">
+      <label class="radio-inline" style="color: black">
+        <input (change)="cambiarTipo()" type="radio" [(ngModel)]="tipo" value=2 name="optradio">Cliente</label>
+      <label class="radio-inline" style="color: black">
+        <input (change)="cambiarTipo()" type="radio" [(ngModel)]="tipo" value=3 name="optradio">Remisero</label>
+      <label class="radio-inline" *ngIf="tipo=='3'" style="color: black">
+        <input (change)="cambiarValidacion()" type="checkbox" [(ngModel)]="HasDrive" name="optradio">Tiene Vehiculo</label>
+    </div>
+
+
+
+    <form *ngIf="tipo=='2'|| (!HasDrive && tipo=='3')" [formGroup]="registroForm" (ngSubmit)="Registrar()" style="background: rgb(224, 215, 84); border-radius: 10px;border-color: white">
+
+      <h2 style="font-family: Verdana, Geneva, Tahoma, sans-serif;text-align: left;color: black">Registro de {{tipoUsuario}}</h2>
+      <hr>
+
+      <div>
+        <div>
+          <div>
+            <br>
+            <div class="form-group">
+              <div class="row">
+                <div class="col-md-6">
+
+
+                  <label class="label2">Usuario:</label>
+                  <div class="input-group">
+                    <div class="input-group-addon">
+                      <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                    </div>
+                    <input type="text" class="form-control" [formControl]="usuario" [(ngModel)]="miUsuario.usuario" placeholder="Nombre de usuario">
+                  </div>
+                  <h6 class="labelO">* 5 caracteres mínimo</h6>
+                  <br>
+
+                  <label class="label2">Nombre:</label>
+                  <div class="input-group">
+                    <div class="input-group-addon">
+                      <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                    </div>
+                    <input type="text" class="form-control" [formControl]="nombre" [(ngModel)]="miUsuario.nombre" placeholder="Nombre" autofocus>
+                  </div>
+                  <h6 class="labelO">* 5 caracteres mínimo</h6>
+                  <br>
+
+                  <label class="label2">Apellido:</label>
+                  <div class="input-group">
+                    <div class="input-group-addon">
+                      <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                    </div>
+                    <input type="text" class="form-control" [formControl]="apellido" [(ngModel)]="miUsuario.apellido" placeholder="Apellido"
+                      autofocus>
+                  </div>
+                  <h6 class="labelO">* 5 caracteres mínimo</h6>
+                  <br>
+
+                  <label class="label2">Fecha de nacimiento:</label>
+                  <div class="input-group">
+                    <div class="input-group-addon">
+                      <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+                    </div>
+                    <input id="date" type="date" [formControl]="nacimiento" [(ngModel)]="miUsuario.fechaNacimiento" class="form-control">
+                  </div>
+
+                  <h6 class="labelO">* Campo obligatorio</h6>
+                  <br>
+
+                </div>
+                <div class="col-md-6">
+
+                  <label class="label2">Sexo:</label>
+                  <div class="input-group">
+                    <div class="input-group-addon">
+                      <span class="glyphicon glyphicon-certificate" aria-hidden="true"></span>
+                    </div>
+                    <select [formControl]="sexo" [(ngModel)]="miUsuario.sexo" class="form-control" id="select">
+                      <option value="M">Masculino</option>
+                      <option value="F">Femenino</option>
+                    </select>
+                  </div>
+
+                  <h6 class="labelO">* Campo obligatorio</h6>
+                  <br>
+
+                  <label class="label2">Clave</label>
+                  <div class="input-group">
+                    <div class="input-group-addon">
+                      <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
+                    </div>
+                    <input type="password" class="form-control" [formControl]="clave" [(ngModel)]="miUsuario.contrasenia" placeholder="Contraseña">
+                  </div>
+
+                  <h6 class="labelO">* 5 caracteres mínimo</h6>
+                  <br>
+
+                  <label class="label2">Confirme Clave</label>
+                  <div class="input-group">
+                    <div class="input-group-addon">
+                      <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
+                    </div>
+                    <input type="password" class="form-control" [formControl]="copiaClave" [(ngModel)]="claveCopia" placeholder="Repita Contraseña">
+                  </div>
+
+                  <h6 class="labelO">* misma contraseña</h6>
+                  <br>
+
+                  <label class="label2">Foto perfil:</label>
+                  <div class="center" style="border-color: cornflowerblue;border-radius: 32px;border: solid; border-color: cornflowerblue">
+                    <file-drop (onFileDrop)="dropped($event)" (onFileOver)="fileOver($event)" (onFileLeave)="fileLeave($event)">
+                      <span *ngIf="!gif">Arrastre aquí su foto: {{nombreFoto1}}</span>
+                      <div *ngIf="gif" style="text-align: center">
+                        <img style="height: 60px;width: 60px;" src="../../../assets/fotos/loading.gif">
+                      </div>
+                    </file-drop>
+                  </div>
+                  <br>
+                </div>
+                <br>
+                <br>
+                <div style="text-align: center">
+
+                  <label class="labelO">* Campos obligatorios</label>
+                </div>
+
+                <br>
+
+                <!--<div class="upload-table">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th>Name</th>
+                      </tr>
+                    </thead>
+                    <tbody class="upload-name-style">
+                      <tr *ngFor="let item of files; let i=index">
+                        <td><strong>{{ item.relativePath }}</strong></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>-->
+              </div>
+              <br>
+              <div>
+                <div class="captcha">
+                  <re-captcha (resolved)="resolvedCaptcha($event)" siteKey="6LfpD18UAAAAAF5G961BFO14n0GnyW1GkubRzcU9"></re-captcha>
+                </div>
+                <br>
+                <div class="row">
+                  <div class="col-lg-0 col-md-0 col-sm-0 col-xs-0">
+                  </div>
+                  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" style="text-align: right">
+                    <button type="submit" id="botonRegistro" class="btn btn-success" style="width: 50%" [disabled]="!(registroForm.valid && resolved && nombreFoto1 != '')">Registrar</button>
+                  </div>
+                  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                    <button class="btn btn-danger" style="width: 50%" (click)="cancelar()">Cancelar</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </form>
+    <form *ngIf="HasDrive && tipo=='3'" [formGroup]="registroForm" (ngSubmit)="Registrar()" style="background: rgb(224, 215, 84); border-radius: 10px;border-color: white">
+      <h2 style="font-family: Verdana, Geneva, Tahoma, sans-serif;text-align: left;color: black">Registro de {{tipoUsuario}}</h2>
+      <hr style="border-color: white">
+      <div>
+        <div>
+          <div>
+            <br>
+            <div class="form-group">
+
+              <div class="row">
+                <div class="col-md-6">
+
+                  <label class="label2">Usuario:</label>
+                  <div class="input-group">
+                    <div class="input-group-addon">
+                      <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                    </div>
+                    <input type="text" class="form-control" [formControl]="usuario" [(ngModel)]="miUsuario.usuario" placeholder="Nombre de usuario">
+                  </div>
+                  <h6 class="labelO">* 5 caracteres mínimo</h6>
+                  <br>
+
+                  <label class="label2">Nombre:</label>
+                  <div class="input-group">
+                    <div class="input-group-addon">
+                      <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                    </div>
+                    <input type="text" class="form-control" [formControl]="nombre" [(ngModel)]="miUsuario.nombre" placeholder="Nombre" autofocus>
+                  </div>
+                  <h6 class="labelO">* 5 caracteres mínimo</h6>
+                  <br>
+
+
+                  <label class="label2">Apellido:</label>
+                  <div class="input-group">
+                    <div class="input-group-addon">
+                      <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                    </div>
+                    <input type="text" class="form-control" [formControl]="apellido" [(ngModel)]="miUsuario.apellido" placeholder="Apellido" autofocus>
+                  </div>
+                  <h6 class="labelO">* 5 caracteres mínimo</h6>
+                  <br>
+
+
+                  <label class="label2">Fecha de nacimiento:</label>
+                  <div class="input-group">
+                    <div class="input-group-addon">
+                      <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+                    </div>
+                    <input id="date" type="date" [formControl]="nacimiento" [(ngModel)]="miUsuario.fechaNacimiento" class="form-control">
+                  </div>
+                  <h6 class="labelO">* Campo obligatorio</h6>
+                  <br>
+
+                </div>
+                <div class="col-md-6">
+
+                    <label class="label2">Sexo:</label>
+                    <div class="input-group">
+                      <div class="input-group-addon">
+                        <span class="glyphicon glyphicon-certificate" aria-hidden="true"></span>
+                      </div>
+                      <select [formControl]="sexo" [(ngModel)]="miUsuario.sexo" class="form-control" id="select">
+                          <option value="M">Masculino</option>
+                          <option value="F">Femenino</option>
+                        </select>
+                    </div>
+                    <h6 class="labelO">* Campo obligatorio</h6>
+                    <br>
+
+                  
+                    <label class="label2">Clave:</label>
+                    <div class="input-group">
+                      <div class="input-group-addon">
+                        <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
+                      </div>
+                      <input type="password" class="form-control" [formControl]="clave" [(ngModel)]="miUsuario.contrasenia" placeholder="Contraseña">
+                    </div>
+                    <h6 class="labelO">* 5 caracteres mínimo</h6>
+                    <br>
+
+
+                    <label class="label2">Confirme Clave:</label>
+                    <div class="input-group">
+                      <div class="input-group-addon">
+                        <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
+                      </div>
+                      <input type="password" class="form-control" [formControl]="copiaClave" [(ngModel)]="claveCopia"  placeholder="Repita Contraseña">
+                    </div>
+                    <h6 class="labelO">* misma contraseña</h6>
+                    <br>
+
+
+                    <label class="label2">Foto perfil:</label>
+                  <div class="center" style="border-color: cornflowerblue;border-radius: 32px;border: solid; border-color: cornflowerblue">
+                    <file-drop (onFileDrop)="dropped($event)" (onFileOver)="fileOver($event)" (onFileLeave)="fileLeave($event)">
+                      <span *ngIf="!gif">Arrastre aquí su foto: {{nombreFoto1}}</span>
+                      <div *ngIf="gif" style="text-align: center">
+                        <img style="height: 60px;width: 60px;" src="../../../assets/fotos/loading.gif">
+                      </div>
+                    </file-drop>
+                  </div>
+                </div>
+              </div>
+
+
+              <br>
+              <hr>
+              <h3>Datos del vehiculo</h3>
+              <br>
+
+              <div class="row">
+                  <div class="col-md-6">
+  
+                    <label class="label2">Marca:</label>
+                    <div class="input-group">
+                      <div class="input-group-addon">
+                        <span class="glyphicon glyphicon-barcode" aria-hidden="true"></span>
+                      </div>
+                      <input type="text" class="form-control" [formControl]="marca" [(ngModel)]="miVehiculo.marca" placeholder="Marca del vehiculo">
+                    </div>
+                    <h6 class="labelO">* 4 caracteres mínimo</h6>
+                    <br>
+
+
+                    <label class="label2">Modelo:</label>
+                    <div class="input-group">
+                      <div class="input-group-addon">
+                        <span class="glyphicon glyphicon-barcode" aria-hidden="true"></span>
+                      </div>
+                      <input type="text" class="form-control" [formControl]="modelo" [(ngModel)]="miVehiculo.modelo"  placeholder="Modelo del vehiculo">
+                    </div>
+                    <h6 class="labelO">* 5 caracteres mínimo</h6>
+                    <br>
+
+                    <label class="label2">Modelo:</label>
+                    <div class="input-group">
+                      <div class="input-group-addon">
+                        <span class="glyphicon glyphicon-barcode" aria-hidden="true"></span>
+                      </div>
+                      <input type="text" class="form-control" [formControl]="patente" [(ngModel)]="miVehiculo.patente"  placeholder="Patente del vehiculo">
+                    </div>
+                    <h6 class="labelO">* 5 caracteres mínimo</h6>
+                    <br>
+
+
+
+                    </div>
+
+<div class="col-md-6">
+    <label class="label2">Foto vehiculo:</label>
+<div class="center" style="border-color: cornflowerblue;border-radius: 32px;border: solid; border-color: cornflowerblue">
+                <file-drop (onFileDrop)="dropped2($event)" (onFileOver)="fileOver($event)" (onFileLeave)="fileLeave($event)">
+                  <span *ngIf="!gif">Arrastre aquí su foto: {{nombreFoto2}}</span>
+                  <div *ngIf="gif" style="text-align: center">
+                    <img style="height: 60px;width: 60px;" src="../../../assets/fotos/loading.gif">
+                  </div>
+                </file-drop>
+              </div>
+</div>
+
+                  </div>
+
+             
+              
+             
+              <div style="text-align: center">
+
+                  <label class="labelO">* Campos obligatorios</label>
+                </div> <br>
+              <div>
+                <div class="captcha">
+                  <re-captcha (resolved)="resolvedCaptcha($event)" siteKey="6LfpD18UAAAAAF5G961BFO14n0GnyW1GkubRzcU9"></re-captcha>
+                </div>
+                <br>
+                <div class="row">
+                  <div class="col-lg-0 col-md-0 col-sm-0 col-xs-0">
+                  </div>
+                  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" style="text-align: right">
+                    <button type="submit" id="botonRegistro" class="btn btn-success" style="width: 50%" [disabled]="!(registroForm.valid && resolved && nombreFoto1 != '' && nombreFoto2 != '')">Registrar</button>
+                  </div>
+                  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                    <button class="btn btn-danger" style="width: 50%" (click)="cancelar()">Cancelar</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          
+        </div>
+
+      </div>
+    </form>
+  </div>
+</div>
+
+
+
+<div *ngIf="gif2">
+  <app-preload-imagen></app-preload-imagen>
+</div>

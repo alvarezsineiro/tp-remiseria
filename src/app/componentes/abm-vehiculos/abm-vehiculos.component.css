@@ -1,0 +1,39 @@
+form {
+    padding: 10px;
+    background:darkred;
+}
+.container {
+    padding: 16px;
+}
+.labelO{
+    color: rgb(202, 39, 39);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.label2{
+    color: black;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+@media(min-width: 1200px){
+    .captcha{
+        padding-left: 40%
+    }
+}
+@media (min-width: 992px ) and (max-width: 1199px){
+    .captcha{
+        padding-left: 30%
+    }
+}
+@media (min-width: 768px) and (max-width: 991px){
+    .captcha{
+        padding-left: 30%
+    }
+}
+@media (max-width: 767px) {
+    .captcha{
+    }
+}
+@media (max-width: 480px){
+    .captcha{
+        width: 70%;
+    }
+}
